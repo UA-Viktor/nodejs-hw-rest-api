@@ -9,6 +9,7 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 //   res.json(result);
 // };
 const listContacts = async (req, res) => {
+  // const result = await Contact.find({}, "-createdAt -updatedAt");
   const result = await Contact.find();
   res.json(result);
 };
@@ -28,10 +29,10 @@ const listContacts = async (req, res) => {
 //   const result = await contacts.addContact(req.body);
 //   res.status(201).json(result);
 // };
-const addContact = async (req, res) => {
-  const result = await Contact.create(req.body);
-  res.status(201).json(result);
-};
+// const addContact = async (req, res) => {
+//   const result = await Contact.create(req.body);
+//   res.status(201).json(result);
+// };
 
 // //@ PUT /api/contacts/:id
 // const updateContact = async (req, res) => {
@@ -59,7 +60,7 @@ const addContact = async (req, res) => {
 module.exports = {
   listContacts: ctrlWrapper(listContacts),
   // getById: ctrlWrapper(getById),
-  addContact: ctrlWrapper(addContact),
+  // addContact: ctrlWrapper(addContact),
   // updateContact: ctrlWrapper(updateContact),
   // removeContact: ctrlWrapper(removeContact),
 };
