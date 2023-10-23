@@ -20,21 +20,21 @@ const contactSchema = new Schema(
       type: String,
       required: true,
     },
-    // favorite: {
-    //   type: Boolean,
-    //   default: false,
-    // },
-    // genre: {
-    //   type: String,
-    //   enum: genreList,
-    //   required: true,
-    // },
-    // date: {
-    //   type: String,
-    //   // 16-10-2009
-    //   match: dateReg,
-    //   required: true,
-    // },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
+    genre: {
+      type: String,
+      enum: genreList,
+      required: true,
+    },
+    date: {
+      type: String,
+      // 16-10-2009
+      match: dateReg,
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -45,22 +45,20 @@ const addSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().required(),
   phone: Joi.string().required(),
-  // favorite: Joi.boolean(),
-  // genre: Joi.string()
-  //   .valid(...genreList)
-  //   .required(),
-  // date: Joi.string().pattern(dateReg).required(),
+  favorite: Joi.boolean(),
+  genre: Joi.string()
+    .valid(...genreList)
+    .required(),
+  date: Joi.string().pattern(dateReg).required(),
 });
 
 const schemas = {
   addSchema,
 };
 
-const Contact = model("сontact", contactSchema);
+const Contact = model("contact", contactSchema);
 
-// module.exports = {
-//   Contact,
-//   schemas,
-// };
-
-module.exports = Contact;
+module.exports = {
+  Contact,
+  schemas,
+};

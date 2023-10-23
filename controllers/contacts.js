@@ -1,5 +1,5 @@
 // const contacts = require("../models_old/contacts");
-const Contact = require("../models/contact");
+const { Contact } = require("../models/contact");
 
 const { HttpError, ctrlWrapper } = require("../helpers");
 
@@ -10,7 +10,7 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 // };
 const listContacts = async (req, res) => {
   // const result = await Contact.find({}, "-createdAt -updatedAt");
-  const result = await Contact.find();
+  const result = await Contact.find({}, "-createdAt -updatedAt");
   res.json(result);
 };
 
@@ -29,10 +29,10 @@ const listContacts = async (req, res) => {
 //   const result = await contacts.addContact(req.body);
 //   res.status(201).json(result);
 // };
-// const addContact = async (req, res) => {
-//   const result = await Contact.create(req.body);
-//   res.status(201).json(result);
-// };
+const addContact = async (req, res) => {
+  const result = await Contact.create(req.body);
+  res.status(201).json(result);
+};
 
 // //@ PUT /api/contacts/:id
 // const updateContact = async (req, res) => {
@@ -60,7 +60,7 @@ const listContacts = async (req, res) => {
 module.exports = {
   listContacts: ctrlWrapper(listContacts),
   // getById: ctrlWrapper(getById),
-  // addContact: ctrlWrapper(addContact),
+  addContact: ctrlWrapper(addContact),
   // updateContact: ctrlWrapper(updateContact),
   // removeContact: ctrlWrapper(removeContact),
 };

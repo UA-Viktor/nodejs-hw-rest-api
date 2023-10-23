@@ -12,7 +12,6 @@ const app = require("./app");
 // const { DB_HOST } = require("./config");
 // const { DB_HOST } = process.env;
 
-require("dotenv").config();
 const { DB_HOST, PORT = 3000 } = process.env;
 
 mongoose.set("strictQuery", true);
