@@ -4,17 +4,11 @@ const validateBody = (schema) => {
   const func = (req, res, next) => {
     const { error } = schema.validate(req.body);
     if (error) {
-      let errorMessage;
-      if (req.method === "POST") {
-        errorMessage = "missing required name field";
-      } else if (req.method === "PUT") {
-        errorMessage = "missing fields";
-      }
-      next(HttpError(400, errorMessage));
-    } else {
-      next();
+      return next(HttpError(400, error.message)); // Добавьте return здесь
     }
+    next(); // Этот вызов больше не будет выполнен, если есть ошибка валидации
   };
+
   return func;
 };
 
