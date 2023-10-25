@@ -1,6 +1,5 @@
-const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-
+const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -21,6 +20,10 @@ const userSchema = new Schema(
       type: String,
       minlength: 6,
       required: true,
+    },
+    token: {
+      type: String,
+      default: "",
     },
   },
   { versionKey: false, timestamps: true }
